@@ -1,0 +1,457 @@
+/*
+  Design tokens and component classes ported from the Egg Tools sister site
+  (github.com/PlazmaEssence/Engg-Tools, assets/css/theme.css) so Plot Log
+  reads as part of the same family of tools. Dark-only, no theme toggle.
+*/
+
+:root {
+  --bg: #0e0f13;
+  --surface: #16181f;
+  --surface2: #1e2029;
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.14);
+  --text: #e8e6df;
+  --muted: #8a8880;
+  --faint: #3a3a40;
+
+  --gold: #e0b23c;
+  --gold-dim: #a5822c;
+  --gold-bg: rgba(224, 178, 60, 0.1);
+  --gold-border: rgba(224, 178, 60, 0.25);
+
+  --red: #e05c5c;
+  --red-dim: #a54444;
+  --red-bg: rgba(224, 92, 92, 0.1);
+  --red-border: rgba(224, 92, 92, 0.25);
+
+  --green: #5cb87a;
+  --green-dim: #43895b;
+  --green-bg: rgba(92, 184, 122, 0.1);
+  --green-border: rgba(92, 184, 122, 0.25);
+
+  --blue: #6ea8e0;
+  --blue-dim: #4f79a5;
+  --blue-bg: rgba(110, 168, 224, 0.1);
+  --blue-border: rgba(110, 168, 224, 0.25);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+code,
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---- header ---- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo-mark {
+  font-size: 1.4rem;
+}
+
+.logo-text {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.site-header .sub {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-left: 0.6rem;
+}
+
+/* ---- layout ---- */
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+main.wide {
+  max-width: 1440px;
+}
+
+.intro h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro p {
+  color: var(--muted);
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+/* ---- panels / sections ---- */
+
+.input-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.input-panel:focus-within {
+  border-color: var(--gold-border);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.panel-header label {
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-weight: 600;
+}
+
+.section-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---- notices ---- */
+
+.notice {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.notice-info {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-border);
+  color: var(--text);
+}
+
+.notice-info svg {
+  color: var(--gold);
+  flex: none;
+}
+
+.notice-danger {
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--text);
+}
+
+.notice-danger svg {
+  color: var(--red);
+  flex: none;
+}
+
+/* ---- forms ---- */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.field .hint {
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+.field input,
+.field select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.field input {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* ---- buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #14140f;
+}
+
+.btn-gold:hover:not(:disabled) {
+  background: #eabf55;
+}
+
+.btn-ghost {
+  background: var(--surface2);
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--gold-border);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.btn-icon {
+  padding: 0.35rem 0.5rem;
+}
+
+/* ---- pills (segmented control / tabs) ---- */
+
+.pill-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.pill-gold.active {
+  background: var(--gold-bg);
+  border-color: var(--gold-border);
+  color: var(--gold);
+}
+
+/* ---- stat cards ---- */
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-bottom: 0.35rem;
+}
+
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+}
+
+.stat-gold .stat-num {
+  color: var(--gold);
+}
+
+.stat-unit {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.2rem;
+}
+
+/* ---- dropzone ---- */
+
+.dropzone {
+  border: 1.5px dashed var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible {
+  border-color: var(--gold-border);
+  outline: none;
+}
+
+.dropzone.drag {
+  border-color: var(--gold);
+  background: var(--gold-bg);
+  color: var(--text);
+}
+
+/* ---- tables ---- */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+table.preview {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+table.preview th,
+table.preview td {
+  padding: 0.45rem 0.7rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+
+table.preview th {
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  text-align: right;
+  font-weight: 500;
+}
+
+table.preview th:first-child,
+table.preview td:first-child {
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---- footer ---- */
+
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+@media (max-width: 680px) {
+  main {
+    padding: 1.5rem 1rem 3rem;
+  }
+}

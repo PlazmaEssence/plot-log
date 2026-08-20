@@ -1,0 +1,53 @@
+/* Layout specific to Plot Log's own app shell — the portable design tokens
+   and component classes live in theme.css instead. */
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.stage-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stage-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stage-canvas {
+  width: 100%;
+  height: 70vh;
+  min-height: 420px;
+  display: block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  touch-action: none;
+}
+
+.side-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .stage-canvas {
+    height: 50vh;
+  }
+  .side-panel {
+    max-height: none;
+  }
+}
