@@ -126,6 +126,24 @@ main.wide {
   max-width: 1440px;
 }
 
+.breadcrumb {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--gold);
+}
+
 .intro h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;

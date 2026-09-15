@@ -48,14 +48,17 @@ export function App() {
   return (
     <>
       <header class="site-header">
-        <a class="logo-link" href="/">
-          <span class="logo-mark">📈</span>
-          <span class="logo-text">Plot Log</span>
+        <a class="logo-link" href="https://www.enggtools.protolab.cc/">
+          <span class="logo-mark">🥚</span>
+          <span class="logo-text">Egg <span>Tools</span></span>
         </a>
-        <span class="sub">Pump curve digitizer</span>
+        <span class="sub">ASME B31.3 / B31.4 · Piping Engineering Tools</span>
       </header>
 
       <main class="wide">
+        <div class="breadcrumb">
+          <a href="https://www.enggtools.protolab.cc/">Egg Tools</a> <span>/</span> <span>Plot Log</span>
+        </div>
         <div class="intro">
           <h1>Digitize a pump curve</h1>
           <p>
@@ -107,8 +110,9 @@ export function App() {
       </main>
 
       <footer class="site-footer">
+        Egg Tools · Plot Log ·{' '}
         <a href="https://github.com/PlazmaEssence/plot-log" target="_blank" rel="noreferrer">
-          Plot Log on GitHub
+          source on GitHub
         </a>
       </footer>
     </>
