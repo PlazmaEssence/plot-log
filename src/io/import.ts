@@ -17,7 +17,7 @@ export async function loadImageFile(file: File): Promise<ProjectImageData> {
     );
   }
   const bitmap = await createImageBitmap(file);
-  return { bitmap, width: bitmap.width, height: bitmap.height, name: file.name };
+  return { bitmap, width: bitmap.width, height: bitmap.height, name: file.name, blob: file };
 }
 
 /** Loads the file and installs it as the project's image. Throws {@link ImportError} on a bad file. */

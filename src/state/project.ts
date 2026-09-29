@@ -43,6 +43,9 @@ export interface ProjectImageData {
   width: number;
   height: number;
   name: string;
+  /** The original file bytes (and its MIME type) — kept so a session export can embed the
+   *  exact source image rather than re-encoding the bitmap through a canvas. */
+  blob: Blob;
 }
 
 let seq = 0;
