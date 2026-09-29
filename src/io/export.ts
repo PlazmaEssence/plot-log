@@ -54,9 +54,10 @@ export function buildSeriesTsv(xAxis: AxisCal, yAxis: AxisCal, s: Series): strin
 }
 
 /**
- * Full project as JSON: axes, series and their raw pixel points. Does not
- * embed the source image yet (see the M6 milestone for save/reload with the
- * image included) — reopening a project still needs the image re-attached.
+ * Axes and series as plain JSON, without the source image — a lightweight
+ * "just the data" export for other tooling. To close the tab and pick a
+ * project back up later, use io/session.ts's .plotlog.zip instead, which
+ * embeds the image too.
  */
 export function buildProjectJson(xAxis: AxisCal, allYAxes: AxisCal[], seriesList: Series[]): string {
   return JSON.stringify({ version: 1, xAxis, yAxes: allYAxes, series: seriesList }, null, 2);

@@ -16,8 +16,8 @@ are digitized, does the pump engineering on top (fits, best-efficiency point, af
 rescaling, system curve, duty point).
 
 See [`PLAN.md`](./PLAN.md) for the full design and the milestone roadmap (this is milestone M1:
-import, manual calibration, manual point placement, CSV/JSON export — the auto-detection,
-tracing, and pump analysis milestones are still ahead).
+import, manual calibration, manual point placement, session save/reload, and CSV/JSON export —
+the auto-detection, tracing, and pump analysis milestones are still ahead).
 
 ## How points are stored
 
@@ -25,6 +25,14 @@ Series points are kept in **image pixel space**, never in data space. Data value
 derived through the current axis calibration, on read. Re-calibrate an axis — or fix a mistake in
 one of its two calibration points — and every value recomputes instantly, without touching a
 single point.
+
+## Saving a session
+
+The Export panel's "Save session" button downloads a `.plotlog.zip` — the source image plus every
+axis calibration and series point, still in pixel space. Drop that file back onto the Import panel
+(or into the same dropzone as a chart image) to pick up exactly where you left off, even after
+closing the tab. The plain CSV/JSON exports next to it only carry finished, resolved values and
+can't be reopened this way.
 
 ## Development
 

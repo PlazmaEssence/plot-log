@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ImportError, extractFile, importFile } from '../../io/import';
+import { loadSessionZip } from '../../io/session';
 import { clearHistory } from '../../state/history';
 import { image, setImage } from '../../state/project';
 
@@ -14,8 +15,12 @@ export function ImportPanel() {
     if (!file) return;
     setError(null);
     try {
-      clearHistory();
-      await importFile(file);
+      if (file.name.toLowerCase().endsWith('.zip')) {
+        await loadSessionZip(file);
+      } else {
+        clearHistory();
+        await importFile(file);
+      }
     } catch (e) {
       setError(e instanceof ImportError ? e.message : 'Could not read that file.');
     }
@@ -35,7 +40,7 @@ export function ImportPanel() {
         class={`dropzone${dragging ? ' drag' : ''}`}
         tabIndex={0}
         role="button"
-        aria-label="Add a chart image"
+        aria-label="Add a chart image or a saved session"
         onClick={() => inputRef.current?.click()}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -71,14 +76,17 @@ export function ImportPanel() {
         ) : (
           <>
             <strong>Drop a chart image here</strong>
-            <div class="hint">or click to browse — or paste a screenshot with ⌘/Ctrl+V</div>
+            <div class="hint">
+              or click to browse — paste a screenshot with ⌘/Ctrl+V — or drop a saved
+              .plotlog.zip session to pick up where you left off
+            </div>
           </>
         )}
       </div>
       <input
         ref={inputRef}
         type="file"
-        accept="image/png,image/jpeg,image/webp,image/gif,image/bmp"
+        accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,.zip,application/zip"
         hidden
         onChange={(e) => {
           const target = e.target as HTMLInputElement;

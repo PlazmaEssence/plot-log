@@ -61,9 +61,11 @@ src/
   state/
     project.ts              Project model + signals store
     history.ts              undo/redo command stack
-    persist.ts              IndexedDB autosave, .plotlog.json import/export
+    ui.ts                   transient, non-undoable UI state
   io/
     import.ts               file / drag-drop / clipboard-paste intake
+    session.ts              .plotlog.zip save/reload (image + full state)
+    zip.ts                  dependency-free store-format zip reader/writer
     pdf.ts                  pdf.js: page render, operator list, text content
     vector.ts               operator list -> classified polylines
     export.ts               CSV / TSV / JSON / PNG writers
@@ -240,9 +242,12 @@ All of it renders in an interactive result chart drawn with the app's own canvas
 CSV (long or wide), **TSV to clipboard** for a straight Excel paste, full-project JSON, resampled
 curve table at N points, and PNG/SVG of the reconstructed chart.
 
-Projects save as `.plotlog.json` (image embedded as a data URL, with a "save without image" option
-when size matters), and **autosave to IndexedDB** — a refresh must never cost an hour of tracing.
-Recent-projects list on the landing screen.
+Projects save as a **`.plotlog.zip`** — the original image bytes plus a `project.json` of every
+axis calibration and series point, still in pixel space — reopened from the Import panel to pick
+up exactly where a session left off. Implemented in M1 as a plain manual export/import (a zip
+turned out simpler and smaller than the originally-planned base64-in-JSON embedding); **autosave
+to IndexedDB** and a recent-projects list on the landing screen remain future M6 work, for the
+case where a tab closes *before* anyone thought to export.
 
 ---
 
@@ -265,12 +270,12 @@ Each milestone is independently shippable; the tool is genuinely usable from M1.
 | | |
 |---|---|
 | **M0** | Scaffold, CI, Pages deploy — a live URL on day one |
-| **M1** | Import, canvas stage, manual calibration, manual points, CSV export |
+| **M1** | Import, canvas stage, manual calibration, manual points, session save/reload (.zip), CSV export |
 | **M2** | Vector PDF extraction + text-content axis reading |
 | **M3** | Raster auto-detect: frame, sub-panels, grid, ticks, OCR, colours |
 | **M4** | Auto-tracing, correction tools, undo/redo |
 | **M5** | Pump analysis |
-| **M6** | Project save/load, autosave, tests, polish |
+| **M6** | Autosave (IndexedDB), recent-projects list, tests, polish |
 
 ## Deployment notes
 
